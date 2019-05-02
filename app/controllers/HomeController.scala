@@ -29,7 +29,7 @@ class HomeController @Inject()(
   }
 
   def addUser(): Action[Json] = Action(circe.json(1024)).async { implicit request =>
-    Future(Ok(""))
+    Future(Created)
   }
 
 }
