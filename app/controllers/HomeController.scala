@@ -18,4 +18,10 @@ class HomeController @Inject()(
       Ok(Json.obj("hello" -> "world".asJson))
     )
   }
+
+  def user: Action[AnyContent] = Action.async { implicit request =>
+    Future(
+      Ok(Json.obj("hello" -> "world".asJson))
+    )
+  }
 }

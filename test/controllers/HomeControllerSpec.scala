@@ -22,7 +22,6 @@ class HomeControllerSpec extends FunSpec with GuiceOneAppPerTest {
   private[this] def contentAsCirceJson(of: Future[Result]): Json =
     parse(contentAsString(of)).right.get
 
-
   describe("#hello") {
     it("hello world JSONを返す") {
       val controller = createController()
@@ -33,6 +32,24 @@ class HomeControllerSpec extends FunSpec with GuiceOneAppPerTest {
 
       assert(status(result) == 200)
       assert(responseBody == Json.obj("hello" -> "world".asJson))
+    }
+  }
+
+  describe("#user") {
+    it("User JSONを返す") {
+      val controller = createController()
+
+      val result = controller.hello
+        .apply(FakeRequest())
+      val responseBody = contentAsCirceJson(result)
+
+      assert(status(result) == 200)
+      assert(responseBody ==
+        Json.obj(
+          "id" -> 1.asJson,
+          "name" -> "John".asJson
+        )
+      )
     }
   }
 
