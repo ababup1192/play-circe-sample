@@ -15,6 +15,7 @@ libraryDependencies ++= Seq(
   "io.circe" %% "circe-parser" % "0.10.0",
   "io.tabmo" %% "circe-validation-core" % "0.0.6",
   "io.tabmo" %% "circe-validation-extra-rules" % "0.0.6",
+  "com.dripower" %% "play-circe" % "2611.0"
 )
 
 // Adds additional packages into Twirl
