@@ -80,17 +80,34 @@ class HomeControllerSpec extends FunSpec with GuiceOneAppPerTest with CirceTestH
   }
 
   describe("#addUser") {
-    it("CREATED Statusを返す") {
-      implicit lazy val materializer: Materializer = app.materializer
-      val controller = createController()
+    describe("nameを渡すと") {
+      it("CREATED Statusを返す") {
+        implicit lazy val materializer: Materializer = app.materializer
+        val controller = createController()
 
-      val request = FakeRequest("POST", "/user")
-        .withCirceJsonBody(
-          Json.obj("name" -> "Mike".asJson)
-        )
-      val result = call(controller.addUser(), request)
+        val request = FakeRequest("POST", "/user")
+          .withCirceJsonBody(
+            Json.obj("name" -> "Mike".asJson)
+          )
+        val result = call(controller.addUser(), request)
 
-      assert(status(result) == CREATED)
+        assert(status(result) == CREATED)
+      }
+    }
+
+    describe("100文字より大きいnameを渡すと") {
+      it("BAD_REQUEST Statusを返す") {
+        implicit lazy val materializer: Materializer = app.materializer
+        val controller = createController()
+
+        val request = FakeRequest("POST", "/user")
+          .withCirceJsonBody(
+            Json.obj("name" -> ("a" * 101).asJson)
+          )
+        val result = call(controller.addUser(), request)
+
+        assert(status(result) == BAD_REQUEST)
+      }
     }
   }
 
