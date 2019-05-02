@@ -18,7 +18,7 @@ object UserCommand {
 
   implicit val decoder: Decoder[UserCommand] = Decoder.instance[UserCommand] { c =>
     for {
-      name <- c.downField("name").read(StringRules.maxLength(100))
+      name <- c.downField("name").read(StringRules.maxLength(100) |+| StringRules.notBlank())
     } yield UserCommand(name)
   }
 }
