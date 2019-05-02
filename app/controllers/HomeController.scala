@@ -9,6 +9,7 @@ import io.circe.generic.auto._
 import scala.concurrent.{ExecutionContext, Future}
 
 case class User(id: Int, name: String)
+case class UserCommand(name: String)
 
 @Singleton
 class HomeController @Inject()(
@@ -26,4 +27,9 @@ class HomeController @Inject()(
       Ok(User(1, "John").asJson)
     )
   }
+
+  def addUser(): Action[Json] = Action(circe.json(1024)).async { implicit request =>
+    Future(Ok(""))
+  }
+
 }
