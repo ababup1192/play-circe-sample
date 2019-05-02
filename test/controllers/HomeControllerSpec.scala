@@ -39,7 +39,7 @@ class HomeControllerSpec extends FunSpec with GuiceOneAppPerTest {
     it("User JSONを返す") {
       val controller = createController()
 
-      val result = controller.hello
+      val result = controller.user
         .apply(FakeRequest())
       val responseBody = contentAsCirceJson(result)
 

@@ -5,8 +5,10 @@ import javax.inject._
 import play.api.libs.circe.Circe
 import play.api.mvc._
 import io.circe.syntax._
-
+import io.circe.generic.auto._
 import scala.concurrent.{ExecutionContext, Future}
+
+case class User(id: Int, name: String)
 
 @Singleton
 class HomeController @Inject()(
@@ -21,7 +23,7 @@ class HomeController @Inject()(
 
   def user: Action[AnyContent] = Action.async { implicit request =>
     Future(
-      Ok(Json.obj("hello" -> "world".asJson))
+      Ok(User(1, "John").asJson)
     )
   }
 }
