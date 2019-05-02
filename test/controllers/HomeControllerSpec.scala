@@ -1,15 +1,14 @@
 package controllers
 
 import akka.stream.Materializer
-import org.scalatest.FunSpec
-import org.scalatestplus.play.guice._
-import play.api.mvc.{ControllerComponents, Result}
-import play.api.http._
-import play.api.mvc.{Codec, Result}
-import play.api.test.FakeRequest
 import io.circe._
 import io.circe.parser._
 import io.circe.syntax._
+import org.scalatest.FunSpec
+import org.scalatestplus.play.guice._
+import play.api.http._
+import play.api.mvc.{Codec, ControllerComponents, Result}
+import play.api.test.FakeRequest
 
 import scala.concurrent.{ExecutionContext, ExecutionContextExecutor, Future}
 
